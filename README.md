@@ -34,7 +34,7 @@ Este projeto apresenta um carrossel interativo com os Hashiras, os poderosos pil
 
 <br>
 
-Catálogo digital de carros com:  
+Hashiras:  
 - 🖼️ **Galeria de Hashiras**
 - 🔍 **Descrição** 
 - 💡 **Detalhes**
