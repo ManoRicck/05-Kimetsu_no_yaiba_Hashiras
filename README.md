@@ -1,7 +1,7 @@
 https://github.com/user-attachments/assets/92ba03f2-52af-4694-aa5d-a9aa25f46655
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/240544b6-2911-4dc9-b182-2fea02c92da2" alt="Hashira" height="100">
+  <img src="https://github.com/user-attachments/assets/240544b6-2911-4dc9-b182-2fea02c92da2" alt="Hashira" height="300">
 </div>
 <h1 align="center">
 
