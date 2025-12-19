@@ -1,8 +1,84 @@
-body {
-    background-color: #000000;
-    overflow: hidden;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    background-color: #000000;
+    font-family: 'Rubik', sans-serif;
+    overflow-x: hidden; /* Mantém hidden horizontal */
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+main::after {
+    display: none;
+}
+
+/* Container do Personagem */
+main .personagem {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Animação do container principal */
+main .personagem.selecionado {
+    display: block;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Animações individuais para os elementos do conteúdo */
+main .personagem.selecionado .conteudo .logo {
+    animation: slideInLeft 0.6s ease-out 0.2s both;
+}
+
+main .personagem.selecionado .conteudo .nome-personagem {
+    animation: slideInLeft 0.6s ease-out 0.4s both;
+}
+
+main .personagem.selecionado .conteudo .descricao {
+    animation: slideInLeft 0.6s ease-out 0.6s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 1. Imagem (Papel de Parede) - FIXA */
+main .personagem .imagem {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 0;
+    margin-top: 0;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
+    /* Imagem também surge suavemente */
+    animation: zoomIn 10s infinite alternate linear; /* Efeito sutil de movimento se quiser, mas vamos focar no fade inicial */
+}
+
+/* Sombra no lado esquerdo para destacar o texto */
 main::after {
     content: "";
     position: fixed;
@@ -11,86 +87,118 @@ main::after {
     min-height: 100vh;
     width: 80vw;
     background: linear-gradient(93deg, rgba(0,0,0,1) 10%, rgba(1,1,1,0) 80%) no-repeat;
-}
-
-main .personagem {
-    display: none;
-    height: 100vh;
-}
-
-main .personagem.selecionado {
+    z-index: 1;
     display: block;
 }
 
-main .personagem .imagem {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* 2. Conteúdo (Logo e Texto) - Lateral Esquerda */
 .conteudo {
     position: absolute;
     top: 0;
-    left: 70px;
+    left: 5%;
+    width: 50%;
+    height: 100vh;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
-    max-width: 480px;
-    z-index: 1;
+    align-items: flex-start;
+    text-align: left;
+    
+    z-index: 5;
+    background: transparent;
+    padding: 0;
 }
 
-.conteudo .nome-personagem {
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: 400;
-    margin-bottom: 5px;
-    font-family: "Secular One";
-}
-
-.conteudo .descricao {
-    color: #ffffff;
-    font-size: 18px;
-    line-height: 24px;
-    font-family: "Rubik";
-}
-
+/* Logo - Dobro do tamanho anterior (200px -> 400px) */
 .conteudo .logo {
     background-image: url("../img/logo-kimetsu.jpg");
-    background-size: cover;
-    width: 200px;
-    height: 191px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 400px; 
+    height: 240px;
     margin-bottom: 20px;
+    display: block;
 }
 
+/* Título - Aumentado */
+.conteudo .nome-personagem {
+    color: #ffffff;
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-family: "Secular One", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0, 1);
+}
+
+/* Descrição - Aumentada, sem fundo e cor ajustada */
+.conteudo .descricao {
+    color: #b3b3b3; /* Branco/Cinza claro */
+    font-size: 24px;
+    line-height: 1.6;
+    font-family: "Rubik", sans-serif;
+    max-width: 600px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* 3. Botões - Coluna Lateral Direita */
 .botoes {
     position: fixed;
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    width: 120px;
+    height: 100vh;
+    
+    background-color: rgba(0, 0, 0, 0.8); /* Opacidade aumentada */
+    
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    justify-content: center;
-    width: 100px;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
+    
+    z-index: 100;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.botoes::-webkit-scrollbar {
+    display: none;
 }
 
 .botoes .botao {
+    background: transparent;
     border: none;
-    background: #00000000;
     cursor: pointer;
-    border-radius: 50%;
+    padding: 0;
+    transition: transform 0.3s;
 }
 
 .botoes .botao img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    opacity: 0.7;
+    transition: all 0.3s ease;
 }
 
-.botoes .botao.selecionado {
-    transform: scale(1.2);
-    box-shadow: 0 0 10px #d9d9d9;
+.botoes .botao:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.botoes .botao.selecionado img {
+    width: 75px;
+    height: 75px;
+    opacity: 1;
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }

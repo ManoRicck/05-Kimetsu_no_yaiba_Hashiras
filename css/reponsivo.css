@@ -1,92 +1,137 @@
-@media (max-width:769px) {
-
-    main::after{
-        background: linear-gradient(70deg, rgba(0,0,0,1) 10%, rgba(1,1,1,0) 80%) no-repeat;
-    }
-    .video {
-        width: 100%;
-        height: auto;
-    }
+@media (max-width: 1024px) {
+    /* Tablet / Mobile Grande */
     
-
-    main .personagem {
-        height: auto;
-    }
-
-    main .personagem .imagem {
-        height: auto;
-        width: 100%;
-        object-fit: contain;
-    }
     .conteudo {
-        justify-content: flex-end;
-        left: 0;
-        top: -15%;
-        max-width: 100vw;
-        padding: 30px;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        margin-top: 55vh; /* Início do texto abaixo da área principal da imagem */
+        z-index: 5; /* Atrás da imagem (que será z-index 10) */
     }
 
     .conteudo .logo {
-        width: 140px;
-        height: 135px;
+        background-position: center;
+        margin: 0 auto 15px auto;
+        width: 240px; /* Aumentado de 200px */
+        height: 140px;
     }
 
     .conteudo .nome-personagem {
-        font-size: 30px;
+        margin-bottom: 5px; /* Reduzido de 15px/20px */
     }
 
     .conteudo .descricao {
-        max-width: 600px;
+        margin-top: 0;
     }
 
+    /* Botões vão para baixo */
     .botoes {
-        flex-direction: row;
-        align-items: flex-end;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
         width: 100%;
-        padding: 30px;
+        height: 120px;
+        flex-direction: row; /* Horizontal */
+        justify-content: flex-start;
+        padding: 0 20px;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow-x: auto;
+        overflow-y: hidden;
+        z-index: 100; /* Acima de tudo */
     }
 
     .botoes .botao img {
-        width: 60px;
-        height: 60px;
-        max-width: 700px;
-        grid-template-columns: 2fr;
+        width: 55px;
+        height: 55px;
+    }
+
+    .botoes .botao.selecionado img {
+        width: 70px;
+        height: 70px;
     }
 }
 
-
-@media (max-width:580px) {
-    main .personagem .imagem {
-        height: auto;
+@media (max-width: 768px) {
+    /* Mobile */
+    
+    body {
+        overflow-y: auto;
     }
 
-    .conteudo .logo {
-        width: 130px;
-        height: 123px;
+    /* Imagem fixa na frente no mobile */
+    main .personagem .imagem {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 80vh;
+        width: 100%;
+        object-fit: contain;
+        object-position: top center;
+        z-index: 10; /* Na frente do texto */
+        pointer-events: none;
     }
 
     .conteudo {
-        top: -15%;
+        margin-top: 60vh; /* Empurra para começar a subir */
+        padding-bottom: 140px; 
+        z-index: 5; /* Passa por trás */
+    }
+
+    .conteudo .logo {
+        width: 150px; /* Ajuste para telas menores */
+        height: 90px;
     }
 
     .conteudo .nome-personagem {
-        font-size: 24px;
+        font-size: 32px;
+        color: #ffffff;
+    }
+
+    .conteudo .descricao {
+        font-size: 16px;
+        color: #b3b3b3;
+        background: rgba(0, 0, 0, 0.6); /* Fundo sutil para legibilidade ao passar por trás */
+        padding: 15px;
+        border-radius: 10px;
     }
 
     .botoes {
-        padding: 20px;
-        top: -0%;
+        height: 100px;
+        gap: 15px;
+    }
+    
+    .botoes .botao img {
+        width: 45px;
+        height: 45px;
     }
 
-    .botoes {
-        flex-direction: row;
-        align-items: flex-end;
-        width: 100%;
-        padding: 30px;
+    .botoes .botao.selecionado img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    main .personagem .imagem {
+        height: 60vh;
     }
 
+    .conteudo {
+        margin-top: 50vh;
+    }
 
-    .botoes.botao img {
-        max-width: 50px;
+    .conteudo .nome-personagem {
+        font-size: 26px;
+    }
+
+    .conteudo .logo {
+        width: 120px;
+        height: 70px;
     }
 }
